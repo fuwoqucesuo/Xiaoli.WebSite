@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Headstyle{
+    <link href="~/Content/css/fileinput.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url();
+        }
+    </style>
+}
+
+<div id="big" class="container">
+    <table class="table table-condensed">
+
+        <tr class="active">
+            <th>Number</th>
+            <th>Title</th>
+            <th>Desc</th>
+            <th>Content</th>
+            <th>Datetime</th>
+            <th>Edit</th>
+        </tr>
+
+        <tr v-for="item in datalist">
+            <td class="active">{{item.numble}}</td>
+            <td class="success">{{item.title}}</td>
+            <td class="warning">{{item.desc}}</td>
+            <td class="danger">{{item.content}}</td>
+            <td class="info">{{item.datetime}}</td>
+            <td class="info" style="text-align:center">
+                <button type="button" v-on:click="update(item)" class="btn btn-warning">Update</button>
+                <button type="button" v-on:click="deleteFun(item)" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </table>
+    <form>
+        <div class="form-group">
+            <label style="color:#000000" for="exampleInputEmail1">Title：</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label style="color:#000000" for="exampleInputPassword1">Desc：</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Desc">
+        </div>
+        <div class="form-group">
+            <label style="color:#000000" for="exampleInputPassword1">Content：</label>
+            <textarea class="form-control" rows="8"></textarea>
+        </div>
+        <div class="form-group">
+            <label style="color:#000000" for="exampleInputPassword1">Code：</label>
+            <textarea class="form-control" rows="15"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="color:#000000" for="exampleInputPassword1">Sort：</label>
+                    <input type="text" class="form-control" placeholder="Sort">
+                </div>
+                <div class="col-sm-6">
+                    <label style="color:#000000" for="exampleInputPassword1">image：</label>
+                    <input type="file" class="file" placeholder="image">
+                </div>
+                <div class="col-sm-4">
+                    <label style="color:#000000" for="exampleInputPassword1">Status：</label>
+                    <div>
+                        <div class="col-sm-3">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1"
+                                           value="option1" checked> 启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1"
+                                           value="option1" checked> 禁用
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="button" v-on:click="addFun">Add</button>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+
+</div>
+@section scripts{
+    <script src="~/Content/js/fileinput.min.js"></script>
+    <script>
+        new Vue({
+            el: "#big",
+            data: function () {
+                return {
+                    datalist: [
+                        {
+                            numble: 1,
+                            title: "第一个标题",
+                            desc: "第一个描述",
+                            content: "第一个内容",
+                            datetime: "2017-01-11"
+                        },
+                        {
+                            numble: 2,
+                            title: "第一个标题",
+                            desc: "第一个描述",
+                            content: "第一个内容",
+                            datetime: "2017-01-11"
+                        },
+                        {
+                            numble: 3,
+                            title: "第一个标题",
+                            desc: "第一个描述",
+                            content: "第一个内容",
+                            datetime: "2017-01-11"
+                        },
+                        {
+                            numble: 4,
+                            title: "第一个标题",
+                            desc: "第一个描述",
+                            content: "第一个内容",
+                            datetime: "2017-01-11"
+                        }
+                    ]
+                }
+            },
+            created: function () {
+                var vm = this;
+                console.log(vm.datalist);
+            },
+            methods: {
+                deleteFun: function (obj) {
+                    vm.datalist.remove(obj);
+                },
+                addFun: function () {
+                    var obj = {
+                        numble: 4,
+                        title: "第一个标题",
+                        desc: "第一个描述",
+                        content: "第一个内容",
+                        datetime: "2017-01-11"
+                    };
+                    vm.datalist.push(obj);
+                }
+            }
+        });
+    </script>
+}
+

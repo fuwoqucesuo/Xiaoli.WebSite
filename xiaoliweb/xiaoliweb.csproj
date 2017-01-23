@@ -201,6 +201,7 @@
     <Compile Include="BLL\HomeBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ConfigController.cs" />
     <Compile Include="Controllers\DataSourceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -230,6 +231,8 @@
     <Content Include="Content\css\DataSource.min.css">
       <DependentUpon>DataSource.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Highlighter.css" />
+    <Content Include="Content\css\Highlighter.min.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\font-awesome-4.4.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.4.0\css\font-awesome.min.css" />
@@ -277,6 +280,7 @@
     <Content Include="Content\js\bootstrap-datetimepicker.js" />
     <Content Include="Content\js\bootstrap-hover-dropdown.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\highlighter.js" />
     <Content Include="Content\js\jquery-2.1.1.js" />
     <Content Include="Content\js\locales\bootstrap-datetimepicker.fr.js" />
     <Content Include="Content\js\photo-gallery.js" />
@@ -356,6 +360,7 @@
     <Content Include="Views\DataSource\Index.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Article\ArticleDetail.cshtml" />
+    <Content Include="Views\Config\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
