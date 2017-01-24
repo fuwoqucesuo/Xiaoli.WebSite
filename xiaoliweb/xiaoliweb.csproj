@@ -198,6 +198,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BLL\ArticleBLL.cs" />
     <Compile Include="BLL\HomeBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
@@ -205,14 +206,19 @@
     <Compile Include="Controllers\DataSourceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\ArticleDAL.cs" />
     <Compile Include="DAL\HomeDAL.cs" />
     <Compile Include="DBhelper\DataHelper.cs" />
     <Compile Include="DBhelper\DBhelp.cs" />
+    <Compile Include="DBhelper\DBHelper.cs" />
+    <Compile Include="DBhelper\Settings.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdvertisementModel.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\Article_listModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\DataMapHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -231,6 +237,8 @@
     <Content Include="Content\css\DataSource.min.css">
       <DependentUpon>DataSource.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\fileinput.css" />
+    <Content Include="Content\css\fileinput.min.css" />
     <Content Include="Content\css\Highlighter.css" />
     <Content Include="Content\css\Highlighter.min.css" />
     <Content Include="Content\css\style.css" />
@@ -280,6 +288,8 @@
     <Content Include="Content\js\bootstrap-datetimepicker.js" />
     <Content Include="Content\js\bootstrap-hover-dropdown.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\fileinput.js" />
+    <Content Include="Content\js\fileinput.min.js" />
     <Content Include="Content\js\highlighter.js" />
     <Content Include="Content\js\jquery-2.1.1.js" />
     <Content Include="Content\js\locales\bootstrap-datetimepicker.fr.js" />

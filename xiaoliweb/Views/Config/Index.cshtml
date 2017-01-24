@@ -9,11 +9,24 @@
         body {
             background: url();
         }
+        [v-cloak]{
+           display:none;
+        }
     </style>
 }
 
 <div id="big" class="container">
-    <table class="table table-condensed">
+    <form>
+        <div class="form-group">
+            <label style="color:#000000" for="exampleInputEmail1">ParentTitle：</label>
+            <input type="text" v-model="Article.Title" class="form-control" id="" placeholder="ParentTitle">
+        </div>
+        <div class="form-group">
+            <label style="color:#000000" for="exampleInputPassword1">ParentDesc：</label>
+            <input type="text" v-model="Article.Desc" class="form-control" id="" placeholder="ParentTitle">
+        </div>
+    </form>
+    <table class="table table-condensed table-responsive" style="table-layout:fixed"> 
 
         <tr class="active">
             <th>Number</th>
@@ -24,14 +37,16 @@
             <th>Edit</th>
         </tr>
 
-        <tr v-for="item in datalist">
-            <td class="active">{{item.numble}}</td>
-            <td class="success">{{item.title}}</td>
-            <td class="warning">{{item.desc}}</td>
-            <td class="danger">{{item.content}}</td>
-            <td class="info">{{item.datetime}}</td>
+        <tr v-for="item in Articlelist" v-cloak style="max-height:200px;overflow:hidden">
+            <td class="active" v-cloak>
+                <div>{{item.Sort}}</div>
+            </td>
+            <td class="success" v-cloak>{{item.Title}}</td>
+            <td class="warning" v-cloak>{{item.Desc}}</td>
+            <td class="danger" v-cloak><div style="overflow:hidden;">{{item.Content}}</div></td>
+            <td class="info" v-cloak>{{item.CreateDate}}</td>
             <td class="info" style="text-align:center">
-                <button type="button" v-on:click="update(item)" class="btn btn-warning">Update</button>
+                <button type="button" v-on:click="updateFun(item)" class="btn btn-warning">Update</button>
                 <button type="button" v-on:click="deleteFun(item)" class="btn btn-danger">Delete</button>
             </td>
         </tr>
@@ -39,29 +54,29 @@
     <form>
         <div class="form-group">
             <label style="color:#000000" for="exampleInputEmail1">Title：</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Title">
+            <input type="text" v-model="ChooseItem.Title" class="form-control" id="exampleInputEmail1" placeholder="Title">
         </div>
         <div class="form-group">
             <label style="color:#000000" for="exampleInputPassword1">Desc：</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Desc">
+            <input type="text" v-model="ChooseItem.Desc" class="form-control" id="exampleInputPassword1" placeholder="Desc">
         </div>
         <div class="form-group">
             <label style="color:#000000" for="exampleInputPassword1">Content：</label>
-            <textarea class="form-control" rows="8"></textarea>
+            <textarea class="form-control"  v-model="ChooseItem.Content" rows="8"></textarea>
         </div>
         <div class="form-group">
             <label style="color:#000000" for="exampleInputPassword1">Code：</label>
-            <textarea class="form-control" rows="15"></textarea>
+            <textarea class="form-control"  v-model="ChooseItem.Code" rows="15"></textarea>
         </div>
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-2">
                     <label style="color:#000000" for="exampleInputPassword1">Sort：</label>
-                    <input type="text" class="form-control" placeholder="Sort">
+                    <input type="text" v-model="ChooseItem.Sort" class="form-control" placeholder="Sort">
                 </div>
                 <div class="col-sm-6">
                     <label style="color:#000000" for="exampleInputPassword1">image：</label>
-                    <input type="file" class="file" placeholder="image">
+                    <input type="file" @*v-model="ChooseItem.ImageUrl"*@ class="file" placeholder="image">
                 </div>
                 <div class="col-sm-4">
                     <label style="color:#000000" for="exampleInputPassword1">Status：</label>
@@ -70,7 +85,7 @@
                             <div class="radio">
                                 <label>
                                     <input type="radio" name="optionsRadios" id="optionsRadios1"
-                                           value="option1" checked> 启用
+                                           value="1" v-model="ChooseItem.Status" checked> 启用
                                 </label>
                             </div>
                         </div>
@@ -78,7 +93,7 @@
                             <div class="radio">
                                 <label>
                                     <input type="radio" name="optionsRadios" id="optionsRadios1"
-                                           value="option1" checked> 禁用
+                                           value="0" v-model="ChooseItem.Status" checked> 禁用
                                 </label>
                             </div>
                         </div>
@@ -88,6 +103,7 @@
         </div>
 
         <button class="btn btn-primary" type="button" v-on:click="addFun">Add</button>
+        <button class="btn btn-primary" type="button" v-on:click="saveFun">Save</button>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 
@@ -99,37 +115,15 @@
         new Vue({
             el: "#big",
             data: function () {
+                var status = {
+                    isAdd: true,
+                    isUpdate:false
+                }
                 return {
-                    datalist: [
-                        {
-                            numble: 1,
-                            title: "第一个标题",
-                            desc: "第一个描述",
-                            content: "第一个内容",
-                            datetime: "2017-01-11"
-                        },
-                        {
-                            numble: 2,
-                            title: "第一个标题",
-                            desc: "第一个描述",
-                            content: "第一个内容",
-                            datetime: "2017-01-11"
-                        },
-                        {
-                            numble: 3,
-                            title: "第一个标题",
-                            desc: "第一个描述",
-                            content: "第一个内容",
-                            datetime: "2017-01-11"
-                        },
-                        {
-                            numble: 4,
-                            title: "第一个标题",
-                            desc: "第一个描述",
-                            content: "第一个内容",
-                            datetime: "2017-01-11"
-                        }
-                    ]
+                    status:status,
+                    Articlelist: [],
+                    ChooseItem: {},
+                    Article: {}
                 }
             },
             created: function () {
@@ -138,18 +132,38 @@
             },
             methods: {
                 deleteFun: function (obj) {
-                    vm.datalist.remove(obj);
+                    this.datalist = this.datalist.filter(function (item) {
+                        return item != obj;
+                    });
                 },
                 addFun: function () {
-                    var obj = {
-                        numble: 4,
-                        title: "第一个标题",
-                        desc: "第一个描述",
-                        content: "第一个内容",
-                        datetime: "2017-01-11"
-                    };
-                    vm.datalist.push(obj);
+                    var vm = this;
+                    vm.Articlelist.push(vm.ChooseItem);
+                    //if (this.status.isAdd) {
+                    //    if (vm.ChooseItem) {
+                    //        $.post("/Config/InsertArticleList", { am: vm.ChooseItem }, function (data) {
+                    //            if (data == 1) {
+                    //                vm.ChooseItem = {};
+                    //            }
+                    //        });
+
+                    //    }
+                    //}
+                    
+                },
+                updateFun: function (obj) {
+                    var vm = this;
+                    vm.status.isAdd = false;
+                    vm.status.isUpdate = true;
+                    vm.ChooseItem = obj;
+                    console.log(obj);
+                },
+                saveFun: function () {
+                    if (this.status.isUpdate) {
+                        
+                    }
                 }
+              
             }
         });
     </script>
